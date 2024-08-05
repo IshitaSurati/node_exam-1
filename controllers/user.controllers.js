@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/user.model');
 
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
@@ -18,7 +18,7 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email, password });
     if (user) {
-      res.status(200).json({ message: 'Logged in successfully' });
+      res.status(200).json({ message: 'Logged in successfully', token: 'dummy-token' }); // replace 'dummy-token' with actual token if needed
     } else {
       res.status(400).json({ message: 'Invalid credentials' });
     }
