@@ -1,28 +1,32 @@
-const User = require('../models/user.model');
+const User = require("../models/user.schema")
 
-exports.signup = async (req, res) => {
-  const { username, email, password } = req.body;
+const createUser = async (req, res) => {
+    let { email } = req.body
+    console.log(req.body);
 
-  try {
-    const user = new User({ username, email, password });
-    await user.save();
-    res.status(201).json({ message: 'User created successfully' });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
-
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email, password });
-    if (user) {
-      res.status(200).json({ message: 'Logged in successfully', token: 'dummy-token' }); // replace 'dummy-token' with actual token if needed
-    } else {
-      res.status(400).json({ message: 'Invalid credentials' });
+    let isUser = await User.findOne({ email: email })
+    if (isUser) {
+        res.send({ message: "User already exists" })
     }
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
+    else {
+        let data = await User.create(req.body)
+        return res.send(data)
+    }
+}
+const LoggedIn = async (req, res) => {
+    let { email, password } = req.body
+    let isUser = await User.findOne({ email: email })
+    console.log("isUser: " + isUser);
+    if (!isUser) {
+        return res.send({ message: "user not found" })
+    }
+
+    if (isUser.password !== password) {
+        return res.send({ message: "password is incorrect" })
+    }
+
+    res.send({ message: "logged in successfully", User: isUser })
+
+}
+
+module.exports = { createUser, LoggedIn }

@@ -1,61 +1,66 @@
-/* Global Styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  background-color: #333;
-  padding: 10px;
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 20px;
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
 }
 
-.navbar a:hover {
-  background-color: #575757;
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Main Content */
-main {
-  padding: 20px;
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-h1, h2 {
-  color: #333;
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.form-group {
-  margin-bottom: 15px;
+form input[type="submit"]:hover {
+    background-color: #555;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
+#taskList h1, #taskList h2 {
+    margin: 0;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #575757;
+#taskList div {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

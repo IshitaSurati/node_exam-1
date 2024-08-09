@@ -1,9 +1,16 @@
-const express = require('express');
-const { createTask, getTasks, getTaskById } = require('../controllers/task.controller');
-const router = express.Router();
 
-router.post('/', createTask);
-router.get('/', getTasks);
-router.get('/:id', getTaskById);
+const { Router } = require("express")
+const { getTask, createTask, updateTask, deleteTask, findTaskByUserId } = require("../controllers/Task.controller")
+const { findById } = require("../models/todo.schema")
 
-module.exports = router;
+
+const taskRoute = Router()
+
+taskRoute.get("/", getTask)
+taskRoute.get("/:id", findById)
+taskRoute.post("/", createTask)
+taskRoute.patch("/:id", updateTask)
+taskRoute.delete("/:id", deleteTask)
+taskRoute.get("/user/:userId",findTaskByUserId)
+
+module.exports=taskRoute
